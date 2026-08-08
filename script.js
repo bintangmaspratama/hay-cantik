@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const p = new URLSearchParams(window.location.search);
     const state = {
-        targetName: p.get('target') || localStorage.getItem('ff_her')    || 'Kamu',
-        myName:     p.get('sender') || localStorage.getItem('ff_myname') || 'Aku',
+        targetName: p.get('target') || localStorage.getItem('ff_her')    || 'Maylaa',
+        myName:     p.get('sender') || localStorage.getItem('ff_myname') || 'Bintang',
         myPhone:    p.get('phone')  || localStorage.getItem('ff_phone')  || '6285600172785',
         workout: 'Spotter Upper Body Bareng',
         treat:   'Matcha Latte',
