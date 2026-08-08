@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>💌 Ada yang Mau Ngomong Sesuatu...</title>
+    <meta name="description" content="Ada pesan rahasia buat kamu dari temen gym. Buka dulu ya... 🥺">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Background Music -->
+<audio id="bgMusic" src="ssstik.io_1786185372009.mp3" preload="auto"></audio>
+
+<!-- SPLASH SCREEN (required for browser autoplay policy) -->
+<div id="splash" class="splash-overlay">
+    <div class="splash-content">
+        <div class="splash-orb splash-orb-1"></div>
+        <div class="splash-orb splash-orb-2"></div>
+
+        <div class="splash-mascot">🏋️‍♂️</div>
+
+        <div class="splash-badge">
+            <span class="splash-dot"></span> Pesan Rahasia Untukmu
+        </div>
+
+        <h1 class="splash-title">Ada yang Mau<br>Ngomong Sesuatu <span class="splash-em">💌</span></h1>
+        <p class="splash-sub">Buka pesan spesial ini dengan sound on ya 🎵</p>
+
+        <button id="splashEnterBtn" class="splash-enter-btn">
+            <span class="splash-btn-ring"></span>
+            <i class="fa-solid fa-play"></i>
+            Buka Pesannya
+        </button>
+
+        <p class="splash-hint">🔊 Pastikan volume HP kamu nyala</p>
+    </div>
+</div>
+
+<!-- Animated gradient orbs -->
+<div class="bg-wrap">
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="orb o3"></div>
+</div>
+<canvas id="bgCanvas"></canvas>
+
+<!-- NAV -->
+<nav class="nav">
+    <button id="soundBtn" class="nav-btn music-btn" title="Toggle Musik">
+        <i id="soundIco" class="fa-solid fa-music"></i>
+        <span id="musicLabel">Playing</span>
+    </button>
+    <div class="nav-brand">🏋️&zwj;♂️ Fit&amp;Flirt</div>
+    <button id="setupBtn" class="nav-btn nav-btn-pink">
+        <i class="fa-solid fa-sliders"></i> Setup
+    </button>
+</nav>
+
+<main class="page">
+
+    <!-- ═══════════════════════════════════
+         HERO
+    ══════════════════════════════════════ -->
+    <section class="hero reveal">
+        <div class="hero-badge">
+            <span class="bdot"></span> Secret Gym Mission
+        </div>
+
+        <div class="mascot-wrap">
+            <div class="mascot-glow"></div>
+            <div class="mascot-emoji">🏋️‍♂️</div>
+        </div>
+
+        <h1 class="hero-title">
+            Haii <span class="gtext" id="targetName">Kamu</span>! 👋
+        </h1>
+
+        <div class="typing-box">
+            <div class="ta">😳</div>
+            <div class="tbubble">
+                <span class="ttext" id="ttext"></span><span class="tcursor">|</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════
+         SURAT JUJUR
+    ══════════════════════════════════════ -->
+    <section class="section reveal">
+        <div class="letter-card">
+            <div class="letter-top">
+                <span class="letter-icon">📝</span>
+                <span class="letter-title">Surat Jujur dari Aku</span>
+            </div>
+
+            <div class="letter-body">
+                <p class="letter-para">
+                    Aku tau... aku pernah nembak kamu dan kamu bilang
+                    <span class="letter-quote">"mau kenal dulu"</span>.
+                    Dan aku respect banget keputusan itu 🙏
+                </p>
+
+                <p class="letter-para">
+                    Aku nulis ini bukan buat maksa atau bikin kamu gak nyaman.
+                    Aku cuma mau bilang satu hal yang jujur —
+                </p>
+
+                <div class="letter-highlight">
+                    <div class="lh-line"></div>
+                    <p class="lh-text">
+                        "Aku gak akan nyerah bukan karena keras kepala.
+                        Tapi karena aku <em>yakin</em> kamu worth it.
+                        Dan aku mau jadi orang yang beneran worth it buat kamu juga."
+                    </p>
+                    <div class="lh-line"></div>
+                </div>
+
+                <p class="letter-para">
+                    Jadi aku lagi berusaha — gym lebih serius 💪, 
+                    jadi lebih baik tiap hari, bukan buat kesan-kesanan,
+                    tapi karena aku percaya kalau kita emang jodoh,
+                    <strong>aku harus layak dapetin kamu.</strong>
+                </p>
+
+                <p class="letter-para">
+                    Kamu gak harus langsung suka aku. Aku cuma minta satu hal:
+                    kasih aku kesempatan buat kamu <span class="letter-em">kenal siapa aku sebenernya</span>. 🥺
+                </p>
+            </div>
+
+            <div class="letter-sign">
+                — <span id="senderName">Aku</span> 💌
+            </div>
+
+            <!-- Progress bar "usaha gw" -->
+            <div class="progress-section">
+                <div class="prog-label">Progress "Jadi Versi Terbaik" aku:</div>
+                <div class="prog-rows">
+                    <div class="prog-item">
+                        <span class="prog-name">💪 Konsisten Gym</span>
+                        <div class="prog-bar"><div class="prog-fill" style="--w:78%;--c:#FF6B9D"></div></div>
+                        <span class="prog-pct">78%</span>
+                    </div>
+                    <div class="prog-item">
+                        <span class="prog-name">🧘 Sabar &amp; Ngerti Posisi</span>
+                        <div class="prog-bar"><div class="prog-fill" style="--w:85%;--c:#A78BFA"></div></div>
+                        <span class="prog-pct">85%</span>
+                    </div>
+                    <div class="prog-item">
+                        <span class="prog-name">😂 Lucu &amp; Gak Bete-in</span>
+                        <div class="prog-bar"><div class="prog-fill" style="--w:91%;--c:#34D399"></div></div>
+                        <span class="prog-pct">91%</span>
+                    </div>
+                    <div class="prog-item">
+                        <span class="prog-name">💖 Tulus sama Kamu</span>
+                        <div class="prog-bar"><div class="prog-fill" style="--w:100%;--c:#FBBF24"></div></div>
+                        <span class="prog-pct">100%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════
+         STATS — 2×2 GRID (no scroll needed)
+    ══════════════════════════════════════ -->
+    <section class="section reveal">
+        <div class="sec-head">
+            <span class="sec-num">01</span>
+            <h2>Catatan Jujur Kemarin 📋</h2>
+        </div>
+
+        <div class="stats-grid">
+            <div class="scard sc-pink">
+                <div class="sc-icon">👀</div>
+                <div class="sc-val"><span class="count" data-to="1">0</span>x</div>
+                <div class="sc-label">Ketemu</div>
+                <div class="sc-desc">Cukup buat bikin fokus latihan buyar seharian</div>
+            </div>
+            <div class="scard sc-purple">
+                <div class="sc-icon">🪞</div>
+                <div class="sc-val"><span class="count" data-to="47">0</span>x</div>
+                <div class="sc-label">Ngecek Cermin</div>
+                <div class="sc-desc">Beneran latihan cuma 2x. Sisanya nyari kamu</div>
+            </div>
+            <div class="scard sc-teal">
+                <div class="sc-icon">📱</div>
+                <div class="sc-val">&lt;3<span style="font-size:.7em;font-weight:600"> det</span></div>
+                <div class="sc-label">Follow IG</div>
+                <div class="sc-desc">Langsung follow sebelum sempet mikir dua kali</div>
+            </div>
+            <div class="scard sc-gold">
+                <div class="sc-icon">✍️</div>
+                <div class="sc-val"><span class="count" data-to="99">0</span>+</div>
+                <div class="sc-label">Draft Pesan</div>
+                <div class="sc-desc">Pengen DM tapi dihapus terus karena deg-degan</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════
+         DATE PLANNER
+    ══════════════════════════════════════ -->
+    <section class="section reveal">
+        <div class="sec-head">
+            <span class="sec-num">02</span>
+            <h2>Kalau Misal Kita Janjian 🎯</h2>
+        </div>
+
+        <div class="planner">
+
+            <div class="plan-group">
+                <div class="plan-label">
+                    <i class="fa-solid fa-fire-flame-curved"></i> Mode Latihan
+                </div>
+                <div class="chips" id="workoutChips">
+                    <button class="chip on" data-value="Spotter Upper Body Bareng">💪 Spotter Upper Body</button>
+                    <button class="chip" data-value="Cardio Santai Sambil Ngobrol">🏃 Cardio &amp; Ngobrol</button>
+                    <button class="chip" data-value="Sesi Foto Aesthetic di Gym">📸 Foto Mirror Gym</button>
+                </div>
+            </div>
+
+            <div class="plan-sep"></div>
+
+            <div class="plan-group">
+                <div class="plan-label">
+                    <i class="fa-solid fa-mug-hot"></i> Abis Workout Enaknya
+                </div>
+                <div class="chips" id="treatChips">
+                    <button class="chip on" data-value="Matcha Latte">🍵 Matcha Latte</button>
+                    <button class="chip" data-value="Iced Coffee">☕ Iced Coffee</button>
+                    <button class="chip" data-value="Protein Shake">🥛 Protein Shake</button>
+                    <button class="chip" data-value="Boba Date">🧋 Boba Date</button>
+                </div>
+            </div>
+
+            <div class="plan-sep"></div>
+
+            <div class="plan-group">
+                <div class="plan-label">
+                    <i class="fa-regular fa-calendar-check"></i> Kapan Kira-kira?
+                </div>
+                <div class="chips" id="timeChips">
+                    <button class="chip on" data-value="Weekend Ini!">🗓️ Weekend Ini!</button>
+                    <button class="chip" data-value="Habis Gym Biasa">⏰ Habis Gym</button>
+                    <button class="chip" data-value="Kapan Kamu Luang">✨ Kapan Kamu Luang</button>
+                </div>
+            </div>
+
+            <div class="plan-preview" id="planPreview">
+                <span class="pp-label">Rencana:</span>
+                <span class="pp-text">💪 Spotter Upper Body • 🍵 Matcha Latte • 🗓️ Weekend Ini!</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════
+         MISSION FINAL
+    ══════════════════════════════════════ -->
+    <section class="section reveal">
+        <div class="qcard">
+            <div class="qcard-glow"></div>
+            <div class="q-heart">🤝</div>
+            <h2 class="q-title">
+                Boleh Kita Mulai<br><span class="gtext">Kenalan Lebih</span>?
+            </h2>
+            <p class="q-sub">Gak ada tekanan 🙏 — cuma mau ngobrol lebih, kenal lebih, dan siapa tau...</p>
+
+            <button id="yesBtn" class="yes-btn">
+                <span class="yes-shine"></span>
+                <i class="fa-solid fa-handshake"></i> Boleh Dong! 🥰
+            </button>
+
+            <div id="noWrap" class="no-wrap">
+                <button id="noBtn" class="no-btn">Nggak Ah 😜</button>
+            </div>
+            <p id="dodgeHint" class="dodge-hint"></p>
+        </div>
+    </section>
+    <!-- ═══════════════════════════════════
+         TITIP PESAN
+    ══════════════════════════════════════ -->
+    <section class="section reveal">
+        <div class="sec-head">
+            <span class="sec-num">04</span>
+            <h2>Titip Pesan Buat Aku ✉️</h2>
+        </div>
+
+        <div class="msg-card">
+            <div class="msg-card-top">
+                <span class="msg-icon">💬</span>
+                <div>
+                    <div class="msg-card-title">Mau bilang sesuatu?</div>
+                    <div class="msg-card-sub">Apapun — aku baca semuanya 🥺</div>
+                </div>
+            </div>
+
+            <textarea
+                id="herMessage"
+                class="msg-textarea"
+                placeholder="Tulis apapun yang kamu mau... mau itu 'oke', 'gak mau', 'lucu juga sih', atau apapun 😄"
+                rows="4"
+            ></textarea>
+
+            <div class="msg-footer">
+                <span id="msgCharCount" class="msg-charcount">0 / 300</span>
+                <button id="sendMsgBtn" class="msg-send-btn">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    Kirim Pesan
+                </button>
+            </div>
+            <p id="msgFeedback" class="msg-feedback"></p>
+        </div>
+    </section>
+
+</main>
+
+<footer class="footer">Made with 💖 · Fit &amp; Flirt Special Edition</footer>
+
+<!-- ════════════════════════════════════════
+     SUCCESS BOTTOM SHEET
+════════════════════════════════════════ -->
+<div id="successOverlay" class="overlay hidden">
+    <div class="sheet pop-in">
+        <button id="closeSuccess" class="sheet-close"><i class="fa-solid fa-xmark"></i></button>
+        <div class="s-burst">🎉</div>
+        <h2 class="s-title">YAYYY!! 🥳❤️</h2>
+        <p class="s-desc">Oke deal! Kita janjian:</p>
+        <div class="s-tags">
+            <span class="stag" id="sumWorkout">Spotter Upper Body</span>
+            <span class="stag" id="sumTreat">Matcha Latte</span>
+            <span class="stag" id="sumTime">Weekend Ini!</span>
+        </div>
+        <a id="waLink" href="#" target="_blank" class="wa-btn">
+            <i class="fa-brands fa-whatsapp"></i> Chat WA Aku Sekarang 📲
+        </a>
+        <div class="or-line"><span>atau ketik nomor kamu</span></div>
+        <div class="phone-row">
+            <div class="phone-box">
+                <span>🇮🇩</span>
+                <input id="herPhone" type="tel" class="phone-input" placeholder="08xx xxxx xxxx">
+            </div>
+            <button id="sendBtn" class="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+        <p id="fbMsg" class="fb-msg"></p>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     SETUP BOTTOM SHEET
+════════════════════════════════════════ -->
+<div id="setupModal" class="overlay hidden">
+    <div class="sheet pop-in">
+        <div class="setup-head">
+            <h3><i class="fa-solid fa-sliders"></i> Setup Dulu Sebelum Kirim</h3>
+            <button id="closeSetup" class="sheet-close static"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <p class="setup-desc">Isi info kamu biar link-nya personal buat dia 🎯</p>
+
+        <div class="field">
+            <label>Nama / Panggilan Dia</label>
+            <input type="text" id="inTarget" class="finput" placeholder="Contoh: Sarah, Sis...">
+        </div>
+        <div class="field">
+            <label>Nama Kamu</label>
+            <input type="text" id="inMyName" class="finput" placeholder="Contoh: Dimas, Bro...">
+        </div>
+        <div class="field">
+            <label>Nomor WA Kamu (628...)</label>
+            <input type="tel" id="inMyPhone" class="finput" placeholder="6281234567890">
+        </div>
+        <div class="field">
+            <label>🔗 Link untuk Dikirim</label>
+            <div class="copy-row">
+                <input type="text" id="genUrl" class="finput" readonly>
+                <button id="copyBtn" class="copy-btn"><i class="fa-solid fa-copy"></i></button>
+            </div>
+        </div>
+        <button id="saveBtn" class="save-btn">
+            <i class="fa-solid fa-check"></i> Simpan &amp; Preview
+        </button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
